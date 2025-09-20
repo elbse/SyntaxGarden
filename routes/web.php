@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Language;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
+
+Route::get('/', function () {
+    $languages = Language::with('notes')->get();
+    return view('languages.index', compact('languages'));
+});
 
 Route::get('/', function () {
     return view('welcome');
